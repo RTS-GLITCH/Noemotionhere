@@ -42,15 +42,20 @@
       margin-left: 270px;
       padding: 40px;
       flex-grow: 1;
+      position: relative;
     }
-    .section {
-      margin-bottom: 40px;
+    .matrix-animation {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: black;
+      overflow: hidden;
+      z-index: 0;
     }
-    .section h3 {
-      color: #00ff00;
-      margin-bottom: 15px;
-      border-bottom: 1px solid #333;
-      padding-bottom: 5px;
+    canvas {
+      display: block;
     }
   </style>
 </head>
@@ -66,9 +71,35 @@
     <a href="#videos">🎥 Videos</a>
   </div>
   <div class="main-content">
-    <div class="section" id="articles">
-      <h3>📚 Own Hacking Articles</h3>
-    </div>
-  </div>
-</body>
+    <canvas id="matrixCanvas"></canvas>
+  </div>  <script>
+    const canvas = document.getElementById('matrixCanvas');
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth - 270;
+    canvas.height = window.innerHeight;
+
+    const chars = "01";
+    const fontSize = 16;
+    const columns = canvas.width / fontSize;
+    const drops = Array(Math.floor(columns)).fill(1);
+
+    function drawMatrix() {
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = '#00FF00';
+      ctx.font = `${fontSize}px monospace`;
+
+      for (let i = 0; i < drops.length; i++) {
+        const text = chars.charAt(Math.floor(Math.random() * chars.length));
+        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+        if (drops[i] * fontSize > canvas.height || Math.random() > 0.975) {
+          drops[i] = 0;
+        }
+        drops[i]++;
+      }
+    }
+
+    setInterval(drawMatrix, 33);
+  </script></body>
 </html>
