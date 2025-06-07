@@ -1,7 +1,114 @@
-type=&quot;password&quot; id=&quot;password&quot; placeholder=&quot;Password&quot; required autocomplete=&quot;new-password&quot;&gt;
-            &lt;input type=&quot;submit&quot; value=&quot;Login&quot;&gt;
-        &lt;/form&gt;
-        &lt;div class=&quot;footer&quot;&gt;&#169; 2025 Hacker Portal&lt;/div&gt;
-    &lt;/div&gt;
-&lt;/body&gt;
-&lt;/html&gt;
+<!DOCTYPE html><html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login - Hacker Portal</title>
+    <style>
+        body {
+            background-color: #121212;
+            font-family: 'Arial', sans-serif;
+            color: #e0e0e0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }.login-container {
+        background-color: #1e1e1e;
+        padding: 40px;
+        border-radius: 12px;
+        box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
+        width: 300px;
+    }
+
+    h2 {
+        text-align: center;
+        color: #00ff00;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+        width: 100%;
+        padding: 10px;
+        margin: 15px 0;
+        border: none;
+        border-radius: 6px;
+        background-color: #2e2e2e;
+        color: #fff;
+    }
+
+    input[type="submit"] {
+        width: 100%;
+        padding: 10px;
+        background-color: #00ff00;
+        border: none;
+        border-radius: 6px;
+        color: #121212;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+    input[type="submit"]:hover {
+        background-color: #00cc00;
+    }
+
+    .footer {
+        text-align: center;
+        margin-top: 15px;
+        font-size: 0.9em;
+        color: #888;
+    }
+</style>
+<script>
+    let attempts = 0;
+    const maxAttempts = 5;
+    let lockTime = 0;
+
+    async function hashPassword(password) {
+        const encoder = new TextEncoder();
+        const data = encoder.encode(password);
+        const hash = await crypto.subtle.digest('SHA-256', data);
+        return Array.from(new Uint8Array(hash)).map(b => b.toString(16).padStart(2, '0')).join('');
+    }
+
+    async function validateLogin(event) {
+        event.preventDefault();
+
+        const now = Date.now();
+        if (lockTime && now < lockTime) {
+            alert("🚫 Too many attempts! Try again later.");
+            return;
+        }
+
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+        const hashedInput = await hashPassword(password);
+        const storedHash = '9c575ea5330cf8d0104fe31e41ecf58c10ff62c91bbf1f59d050c591bfa16048';
+
+        if (username === 'admin' && hashedInput === storedHash) {
+            alert("✅ Login successful!");
+            window.location.href = "dashboard.html";
+        } else {
+            attempts++;
+            if (attempts >= maxAttempts) {
+                lockTime = Date.now() + 30000; // 30 seconds lock
+                alert("❌ Too many failed attempts! Login locked for 30 seconds.");
+            } else {
+                alert(`❌ Invalid credentials! Attempts left: ${maxAttempts - attempts}`);
+            }
+        }
+    }
+</script>
+
+</head>
+<body>
+    <div class="login-container">
+        <h2>Login</h2>
+        <form onsubmit="validateLogin(event)">
+            <input type="text" id="username" placeholder="Username" required autocomplete="off">
+            <input type="password" id="password" placeholder="Password" required autocomplete="new-password">
+            <input type="submit" value="Login">
+        </form>
+        <div class="footer">© 2025 Hacker Portal</div>
+    </div>
+</body>
+</html>
