@@ -1,114 +1,117 @@
-Sure, Mister Stark. Jei dashboard ta administrator-level hacker control panel hobe, tar moddhe nimnolikito features gulo rakha dorkar — fully organized & power-packed:
-
-
----
-
-🧠 Hacker Dashboard - Admin Panel Features
-
-🔐 1. User Authentication Panel
-
-✅ Logged-in user info
-
-🔁 Logout button
-
-🧑‍💼 User Role info (admin, guest)
-
-
-
----
-
-🌐 2. Network Tools
-
-📡 IP Scanner
-
-🛠️ Port Scanner (Nmap API support if possible)
-
-🔍 DNS Lookup
-
-🧭 WHOIS Lookup
-
-📶 Wi-Fi analyzer (for rooted + Linux tools via Termux)
-
-
-
----
-
-🗃️ 3. File & Payload Management
-
-📁 File upload/download
-
-🧬 Reverse shell generator (prebuilt payloads)
-
-📦 Encoder/Decoder (Base64, URL, HTML entities)
-
-📋 File hash checker (MD5, SHA256)
-
-
-
----
-
-📚 4. Knowledge Base (Learning Tools)
-
-🧱 Networking Fundamentals
-
-🔓 Linux Command Sheet
-
-🕵️‍♂️ OSINT Tools Reference
-
-📖 Exploit Database browser (local mirror)
-
-🎓 PDF eBooks section
-
-
-
----
-
-📊 5. System Monitoring (For rooted/termux based tools)
-
-💻 CPU/RAM Usage
-
-📶 Active Connections
-
-🧰 Background Services
-
-
-
----
-
-⚙️ 6. Admin Utilities
-
-🛠️ Settings (Theme, Security)
-
-🔐 Password Manager (encrypted vault)
-
-🧪 Script Executor (custom JS or Bash via API or backend)
-
-📜 Logs Viewer (auth attempts, payload activity)
-
-
-
----
-
-🎨 7. User Interface Ideas
-
-Side Navigation bar (left)
-
-Top navbar (logout, user info, dark mode toggle)
-
-Dashboard widgets (cards or tiles)
-
-Responsive layout (mobile + desktop)
-
-
-
----
-
-🔧 Want me to:
-
-Start designing the HTML + CSS layout for this dashboard step-by-step?
-
-Or you want a modular version (split into multiple pages or tabs)?
-
-
-Let me know your preferred flow, Boss.
-
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hacker Admin Dashboard</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #121212;
+      color: #e0e0e0;
+      display: flex;
+    }
+    .sidebar {
+      width: 250px;
+      background-color: #1f1f1f;
+      height: 100vh;
+      padding: 20px;
+      box-shadow: 2px 0 10px rgba(0, 255, 0, 0.3);
+      position: fixed;
+      top: 0;
+      left: 0;
+    }
+    .sidebar h2 {
+      color: #00ff00;
+      margin-bottom: 30px;
+    }
+    .sidebar a {
+      display: block;
+      color: #ccc;
+      padding: 10px;
+      margin-bottom: 10px;
+      text-decoration: none;
+      border-radius: 6px;
+      transition: 0.2s;
+    }
+    .sidebar a:hover, .sidebar a.active {
+      background-color: #00ff00;
+      color: #121212;
+    }
+    .main-content {
+      margin-left: 270px;
+      padding: 40px;
+      flex-grow: 1;
+    }
+    .section {
+      margin-bottom: 40px;
+    }
+    .section h3 {
+      color: #00ff00;
+      margin-bottom: 15px;
+      border-bottom: 1px solid #333;
+      padding-bottom: 5px;
+    }
+    .article {
+      background-color: #1e1e1e;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-left: 4px solid #00ff00;
+      border-radius: 10px;
+      box-shadow: 0 0 12px rgba(0,255,0,0.15);
+      transition: 0.3s;
+    }
+    .article:hover {
+      transform: scale(1.02);
+      box-shadow: 0 0 20px rgba(0,255,0,0.3);
+    }
+    .article h4 {
+      margin: 0 0 10px;
+      color: #ff6600;
+    }
+    .article p {
+      color: #ccc;
+      line-height: 1.5;
+    }
+    .add-article-btn {
+      background-color: #00ff00;
+      color: #121212;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+    .add-article-btn:hover {
+      background-color: #00cc00;
+    }
+  </style>
+</head>
+<body>
+  <div class="sidebar">
+    <h2>🧠 Hacker Panel</h2>
+    <a href="#articles" class="active">📚 Articles</a>
+    <a href="#files">📂 File Store</a>
+    <a href="#code">💻 Code</a>
+    <a href="#tools">⚙️ Tools</a>
+    <a href="#projects">🧪 Projects</a>
+    <a href="#learning">🎓 Learning</a>
+    <a href="#videos">🎥 Videos</a>
+  </div>
+  <div class="main-content">
+    <div class="section" id="articles">
+      <h3>📚 Own Hacking Articles</h3>
+      <button class="add-article-btn">+ Add New Article</button>
+      <div class="article">
+        <h4>Understanding OSI Model in Real Life Hacking</h4>
+        <p>The OSI model helps hackers understand how data travels and where to intercept or manipulate it. From ARP poisoning at the Data Link layer to DNS spoofing at the Application layer...</p>
+      </div>
+      <div class="article">
+        <h4>Bypassing Login Pages with SQL Injection</h4>
+        <p>Many websites are still vulnerable to simple SQL injections like ' OR 1=1--. Learn how input validation can prevent this and how attackers exploit poorly coded forms...</p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
